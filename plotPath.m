@@ -1,4 +1,4 @@
-function plotPath(f, t, x, y, total_length)
+function [t, x_t, y_t] = plotPath(f, t, x, y, total_length)
     % Pastikan rentang tt tidak melebihi batas t asli
     t_min = min(t);
     t_max = max(t);
@@ -16,8 +16,13 @@ function plotPath(f, t, x, y, total_length)
         end
     end
 
+    % Simpan hasil interpolasi
+    t = tt;
+    x_t = xy(:, 1);
+    y_t = xy(:, 2);
+
     figure;
-    plot(xy(:,1), xy(:,2), 'b-', 'LineWidth', 2); % Plot kurva interpolasi
+    plot(x_t, y_t, 'b-', 'LineWidth', 2); % Plot kurva interpolasi
     hold on;
     scatter(x, y, 50, 'r', 'filled'); % Plot titik asli
     title(sprintf('Interpolated Path with Total Length: %.4f', total_length));
@@ -25,11 +30,5 @@ function plotPath(f, t, x, y, total_length)
     ylabel('Y coordinate');
     axis equal;
     grid on;
-
-    % Tambahkan teks untuk fungsi parametrik
-    xt = x(1); % Misalnya, ambil koordinat x dari titik pertama
-    yt = y(1); % Misalnya, ambil koordinat y dari titik pertama
-    f_text = sprintf('f(t) = (%.2f, %.2f)', xt, yt);
-    text(xt, yt, f_text, 'HorizontalAlignment', 'center', 'VerticalAlignment', 'top');
 end
 

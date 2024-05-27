@@ -9,5 +9,5 @@ function tk2(n)
   total_length = pathLength(cs_x, cs_y, t);
 
   % Plot hasil interpolasi dan panjang lintasan menggunakan fungsi parametrik
-  plotPath(f, t, x, y, total_length);
+  [t, x_t, y_t] = plotPath(f, t, x, y, total_length);
 end
